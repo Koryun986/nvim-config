@@ -5,8 +5,8 @@ local M = {}
 M.general = {
   i = {
     -- go to  beginning and end
-    ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
-    ["<C-e>"] = { "<End>", "End of line" },
+    ["<C-b>"] = { "<esc>^i", "beginning of line" },
+    ["<C-e>"] = { "<end>", "end of line" },
 
     -- navigate within insert mode
     ["<C-h>"] = { "<Left>", "Move left" },
@@ -16,6 +16,10 @@ M.general = {
   },
 
   n = {
+    ["<C-b>"] = { "<esc>^", "beginning of line" },
+    ["<C-e>"] = { "<end>", "end of line" },
+
+
     ["<Esc>"] = { ":noh <CR>", "Clear highlights" },
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
