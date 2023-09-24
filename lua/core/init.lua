@@ -113,3 +113,11 @@ local new_cmd = vim.api.nvim_create_user_command
 new_cmd("NvChadUpdate", function()
   require "nvchad.updater"()
 end, {})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  command = "set nornu nonu |NvimTreeToggle",
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  command = "set rnu nu",
+})
