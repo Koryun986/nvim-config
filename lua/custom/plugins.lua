@@ -4,29 +4,24 @@ local overrides = require("custom.configs.overrides")
 local plugins = {
 
   --Override plugin definition options
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      -- format & linting
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require "custom.configs.null-ls"
-        end,
-      },
-    },
-    config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
-  },
-
-  -- override plugin configs
-  {
-    "williamboman/mason.nvim",
-    opts = overrides.mason
-  },
-
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   dependencies = {
+  --     -- format & linting
+  --     {
+  --       "jose-elias-alvarez/null-ls.nvim",
+  --       config = function()
+  --         require "custom.configs.null-ls"
+  --       end,
+  --     },
+  --   },
+  --   config = function()
+  --     require "plugins.configs.lspconfig"
+  --     require "custom.configs.lspconfig"
+  --   end, -- Override to setup mason-lspconfig
+  -- },
+  --
+  -- -- override plugin configs
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
@@ -71,19 +66,24 @@ local plugins = {
     "mfussenegger/nvim-lint",
     event = "VeryLazy",
     config = function ()
-      require "custom.configs.lint"
+      return require "custom.configs.lint"
     end, 
   },
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "eslint-lsp",
-        "prettier",
-        "typescript-language-server",
-      }, 
-    },
-  },
+  -- {
+  --   "williamboman/mason.nvim",
+  --   opts = overrides.mason
+  -- },
+  --
+  -- {
+  --   "williamboman/mason.nvim",
+  --   opts = {
+  --     ensure_installed = {
+  --       "eslint-lsp",
+  --       "prettier",
+  --       "typescript-language-server",
+  --     }, 
+  --   },
+  -- },
   {
     "preservim/tagbar",
     lazy = false,
@@ -91,8 +91,17 @@ local plugins = {
   {
     "neoclide/coc.nvim",
     branch = "release",
+<<<<<<< HEAD
     lazy = false,
   }
+=======
+    build = "yarn install --frozen-lockfile",
+    lazy = false,
+    opts = function ()
+      return require "custom.configs.coc"
+    end,
+  },
+>>>>>>> 1ec8729f3bf4062aab63671a5575412fc0863f6e
 }
 
 return plugins

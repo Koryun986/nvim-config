@@ -160,7 +160,11 @@ local default_plugins = {
   --       end,
   --     },
   --
+<<<<<<< HEAD
       -- autopairing of (){}[] etc
+=======
+  --     -- autopairing of (){}[] etc
+>>>>>>> 1ec8729f3bf4062aab63671a5575412fc0863f6e
       {
         "windwp/nvim-autopairs",
         opts = {
@@ -176,7 +180,11 @@ local default_plugins = {
         end,
       },
 
+<<<<<<< HEAD
   --     -- cmp sources plugins
+=======
+      -- cmp sources plugins
+>>>>>>> 1ec8729f3bf4062aab63671a5575412fc0863f6e
   --     {
   --       "saadparwaiz1/cmp_luasnip",
   --       "hrsh7th/cmp-nvim-lua",
