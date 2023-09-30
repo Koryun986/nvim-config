@@ -116,50 +116,50 @@ local default_plugins = {
   },
 
   -- lsp stuff
-  {
-    "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
-    opts = function()
-      return require "plugins.configs.mason"
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "mason")
-      require("mason").setup(opts)
-
-      -- custom nvchad cmd to install all mason binaries listed
-      vim.api.nvim_create_user_command("MasonInstallAll", function()
-        vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
-      end, {})
-
-      vim.g.mason_binaries_list = opts.ensure_installed
-    end,
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    init = function()
-      require("core.utils").lazy_load "nvim-lspconfig"
-    end,
-    config = function()
-      require "plugins.configs.lspconfig"
-    end,
-  },
-
-  -- load luasnips + cmp related in insert mode only
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      {
-        -- snippet plugin
-        "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
-        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-        config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts)
-        end,
-      },
-
+  -- {
+  --   "williamboman/mason.nvim",
+  --   cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+  --   opts = function()
+  --     return require "plugins.configs.mason"
+  --   end,
+  --   config = function(_, opts)
+  --     dofile(vim.g.base46_cache .. "mason")
+  --     require("mason").setup(opts)
+  --
+  --     -- custom nvchad cmd to install all mason binaries listed
+  --     vim.api.nvim_create_user_command("MasonInstallAll", function()
+  --       vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
+  --     end, {})
+  --
+  --     vim.g.mason_binaries_list = opts.ensure_installed
+  --   end,
+  -- },
+  --
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   init = function()
+  --     require("core.utils").lazy_load "nvim-lspconfig"
+  --   end,
+  --   config = function()
+  --     require "plugins.configs.lspconfig"
+  --   end,
+  -- },
+  --
+  -- -- load luasnips + cmp related in insert mode only
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   event = "InsertEnter",
+  --   dependencies = {
+  --     {
+  --       -- snippet plugin
+  --       "L3MON4D3/LuaSnip",
+  --       dependencies = "rafamadriz/friendly-snippets",
+  --       opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+  --       config = function(_, opts)
+  --         require("plugins.configs.others").luasnip(opts)
+  --       end,
+  --     },
+  --
       -- autopairing of (){}[] etc
       {
         "windwp/nvim-autopairs",
@@ -176,23 +176,23 @@ local default_plugins = {
         end,
       },
 
-      -- cmp sources plugins
-      {
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-      },
-    },
-    opts = function()
-      return require "plugins.configs.cmp"
-    end,
-    config = function(_, opts)
-      require("cmp").setup(opts)
-    end,
-  },
-
+  --     -- cmp sources plugins
+  --     {
+  --       "saadparwaiz1/cmp_luasnip",
+  --       "hrsh7th/cmp-nvim-lua",
+  --       "hrsh7th/cmp-nvim-lsp",
+  --       "hrsh7th/cmp-buffer",
+  --       "hrsh7th/cmp-path",
+  --     },
+  --   },
+  --   opts = function()
+  --     return require "plugins.configs.cmp"
+  --   end,
+  --   config = function(_, opts)
+  --     require("cmp").setup(opts)
+  --   end,
+  -- },
+  --
   {
     "numToStr/Comment.nvim",
     keys = {

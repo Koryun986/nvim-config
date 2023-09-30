@@ -88,6 +88,11 @@ local plugins = {
     "preservim/tagbar",
     lazy = false,
   },
+  {
+    "neoclide/coc.nvim",
+    branch = "release",
+    lazy = false,
+  }
 }
 
 return plugins

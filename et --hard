@@ -1,0 +1,41 @@
+[33mcommit 1ec8729f3bf4062aab63671a5575412fc0863f6e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Koryun <79407889+Koryun986@users.noreply.github.com>
+Date:   Sun Sep 24 18:22:02 2023 +0400
+
+    change all language servers to coc
+
+[33mcommit 7c3fba747773910228d07fab7059de9fde3491b2[m
+Author: Koryun <79407889+Koryun986@users.noreply.github.com>
+Date:   Sun Sep 24 15:27:02 2023 +0400
+
+    add new mappings
+
+[33mcommit 0c794aa1fbb419311cae8843135208284b6ec24d[m
+Author: Koryun <79407889+Koryun986@users.noreply.github.com>
+Date:   Fri Sep 22 19:15:16 2023 +0400
+
+    add tagbar
+
+[33mcommit 28d222dfb658a188ee035908968adb601bb010bf[m
+Author: Koryun <79407889+Koryun986@users.noreply.github.com>
+Date:   Thu Sep 21 16:13:27 2023 +0400
+
+    add mulitiple cursor config
+
+[33mcommit 4ce94a1ef82f63ba7273687f028a0cc07c3ce919[m
+Author: Koryun <79407889+Koryun986@users.noreply.github.com>
+Date:   Wed Sep 20 21:03:31 2023 +0400
+
+    change mapping and add some features
+
+[33mcommit 03d62178a00b20aac9beba65a0632ecff1f66468[m
+Author: Koryun <79407889+Koryun986@users.noreply.github.com>
+Date:   Wed Sep 20 18:52:42 2023 +0400
+
+    add relative numbers and distance on scroll
+
+[33mcommit 12399a06e863cc1e375a9fcf48352b8af7413823[m
+Author: Koryun <79407889+Koryun986@users.noreply.github.com>
+Date:   Sat Sep 9 08:48:00 2023 +0400
+
+    neovim config
