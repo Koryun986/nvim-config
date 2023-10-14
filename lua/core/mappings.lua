@@ -259,9 +259,9 @@ M.nvimtree = {
   plugin = true,
 
   n = {
-    ["<A-e>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    -- ["<A-e>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
     -- focus
-    ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
+    ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "Focus nvimtree" },
   },
 }
 
