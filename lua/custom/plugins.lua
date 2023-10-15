@@ -19,6 +19,48 @@ local plugins = {
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end, -- Override to setup mason-lspconfig
+    opts = {
+  -- make sure mason installs the server
+  servers = {
+    ---@type lspconfig.options.tsserver
+    tsserver = {
+      keys = {
+        {
+          "<leader>co",
+          function()
+            vim.lsp.buf.code_action({
+              apply = true,
+              context = {
+                only = { "source.organizeImports.ts" },
+                diagnostics = {},
+              },
+            })
+          end,
+          desc = "Organize Imports",
+        },
+      },
+      settings = {
+        typescript = {
+          format = {
+            indentSize = vim.o.shiftwidth,
+            convertTabsToSpaces = vim.o.expandtab,
+            tabSize = vim.o.tabstop,
+          },
+        },
+        javascript = {
+          format = {
+            indentSize = vim.o.shiftwidth,
+            convertTabsToSpaces = vim.o.expandtab,
+            tabSize = vim.o.tabstop,
+          },
+        },
+        completions = {
+          completeFunctionCalls = true,
+        },
+      },
+    },
+  },
+}
   },
 
   -- override plugin configs
@@ -88,11 +130,11 @@ local plugins = {
     "preservim/tagbar",
     lazy = false,
   },
-  {
-    "neoclide/coc.nvim",
-    branch = "release",
-    lazy = false,
-  },
+  -- {
+  --   "neoclide/coc.nvim",
+  --   branch = "release",
+  --   lazy = false,
+  -- },
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -182,6 +224,114 @@ local plugins = {
       table.insert(opts.adapters, require("neotest-vitest"))
     end,
   },
+  -- {
+  --   "ggandor/lightspeed.nvim",
+  --   -- lazy = true,
+  --   event = "VeryLazy",
+  -- }
+ {
+    "phaazon/hop.nvim",
+    branch = "v2",
+    event = "VeryLazy",
+    config = function ()
+      require "custom.configs.hop"
+    end
+  },
+   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "haydenmeade/neotest-jest",
+      "marilari88/neotest-vitest",
+    },
+    keys = {
+      {
+        "<leader>tl",
+        function()
+          require("neotest").run.run_last()
+        end,
+        desc = "Run Last Test",
+      },
+      {
+        "<leader>tL",
+        function()
+          require("neotest").run.run_last({ strategy = "dap" })
+        end,
+        desc = "Debug Last Test",
+      },
+      {
+        "<leader>tw",
+        "<cmd>lua require('neotest').run.run({ jestCommand = 'jest --watch ' })<cr>",
+        desc = "Run Watch",
+      },
+    },
+    opts = function(_, opts)
+      table.insert(
+        opts.adapters,
+        require("neotest-jest")({
+          jestCommand = "npm test --",
+          jestConfigFile = "custom.jest.config.ts",
+          env = { CI = true },
+          cwd = function()
+            return vim.fn.getcwd()
+          end,
+        })
+      )
+      table.insert(opts.adapters, require("neotest-vitest"))
+    end,
+  },
+  {
+  "mfussenegger/nvim-dap",
+  optional = true,
+  dependencies = {
+    {
+      "williamboman/mason.nvim",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "js-debug-adapter")
+      end,
+    },
+  },
+  opts = function()
+    local dap = require("dap")
+    if not dap.adapters["pwa-node"] then
+      require("dap").adapters["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "node",
+          -- 💀 Make sure to update this path to point to your installation
+          args = {
+            require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+              .. "/js-debug/src/dapDebugServer.js",
+            "${port}",
+          },
+        },
+      }
+    end
+    for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+      if not dap.configurations[language] then
+        dap.configurations[language] = {
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+          },
+          {
+            type = "pwa-node",
+            request = "attach",
+            name = "Attach",
+            processId = require("dap.utils").pick_process,
+            cwd = "${workspaceFolder}",
+          },
+        }
+      end
+    end
+  end,
+  }
 }
 
 return plugins
