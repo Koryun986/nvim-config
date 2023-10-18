@@ -331,7 +331,39 @@ local plugins = {
       end
     end
   end,
-  }
+  },
+  {
+    "codota/tabnine-nvim",
+    build = "pwsh.exe -file .\\dl_binaries.ps1",
+    event = "VeryLazy",
+    config = function ()
+      require('tabnine').setup({
+        disable_auto_comment=true,
+        accept_keymap="<C-[>",
+        dismiss_keymap = "<C-]>",
+        debounce_ms = 800,
+        suggestion_color = {gui = "#808080", cterm = 244},
+        exclude_filetypes = {"TelescopePrompt", "NvimTree"},
+        log_file_path = nil, -- absolute path to Tabnine log file
+      })
+    end
+  },
+  {
+    "quick-lint/quick-lint-js",
+    rtp = "plugin/vim/quick-lint-js.vim",
+    tag = '2.16.0',
+    opt = true,
+    config = function ()
+      require('lspconfig/quick_lint_js').setup {}
+    end
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+     event = "VeryLazy",
+  },
 }
-
 return plugins
