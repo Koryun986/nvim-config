@@ -373,5 +373,13 @@ local plugins = {
     },
      event = "VeryLazy",
   },
+  {
+    'Wansmer/treesj',
+    keys = { '<space>j', '<space>j', '<space>s' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesj').setup({--[[ your config ]]})
+    end,
+  }
 }
 return plugins
