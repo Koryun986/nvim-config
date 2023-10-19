@@ -237,7 +237,15 @@ local plugins = {
       require "custom.configs.hop"
     end
   },
-   { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+   {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {},
+    event = "BufRead",
+    config = function ()
+      require "custom.configs.blankline"
+    end
+  },
   {
     "nvim-neotest/neotest",
     dependencies = {
