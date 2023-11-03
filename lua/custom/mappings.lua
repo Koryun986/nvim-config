@@ -12,7 +12,12 @@ M.general = {
     ["A-."] = { "<cmd> :res +10 . (winheight(0) * 3/2)<CR>" },
     ["A-,"] = { "<cmd> :exe -10 . (winheight(0) * 2/3)<CR>" },
     -- ["s"] = { ":HopAnywhere<cr>", opts = { silent = true } },
-    ["S"] = { ":HopWord<cr>", opts = { silent = true } }
+    ["S"] = { ":HopWord<cr>", opts = { silent = true } },
+    ["<leader>tt"] = { function() require("neotest").run.run() end, "Run nearest test" },
+    ["<leader>tf"] = { function() require("neotest").run.run(vim.fn.expand "%") end, "Run file test" },
+    ["<leader>to"] = { ":Neotest output<CR>", "Test output" },
+    ["<leader>ts"] = { ":Neotest summary<CR>", "Test summary" },
+    ["<leader>du"] = { function() require("dapui").toggle() end, "Dedug UI" },
   },
   v = {
     ["<A-j>"] = { ":m '>+1<CR>gv=gv", "Move line up"},
