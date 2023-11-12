@@ -17,7 +17,8 @@ M.general = {
     ["<leader>tf"] = { function() require("neotest").run.run(vim.fn.expand "%") end, "Run file test" },
     ["<leader>to"] = { ":Neotest output<CR>", "Test output" },
     ["<leader>ts"] = { ":Neotest summary<CR>", "Test summary" },
-    ["<leader>du"] = { function() require("dapui").toggle() end, "Dedug UI" },
+    ["<leader>hl"] = { ":HopLine<cr>", "Hop find line"},
+    ["<leader>ha"] = { ":HopAnywhere<cr>", "Hop find line"},
   },
   v = {
     ["<A-j>"] = { ":m '>+1<CR>gv=gv", "Move line up"},
