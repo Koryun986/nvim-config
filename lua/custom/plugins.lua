@@ -228,5 +228,12 @@ local plugins = {
       "haydenmeade/neotest-jest",
     },
   },
+  {
+    "jose-elias-alvarez/typescript.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("custom.configs.typescript")
+    end,
+  },
 }
 return plugins
