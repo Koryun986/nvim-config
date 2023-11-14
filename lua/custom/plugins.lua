@@ -229,11 +229,11 @@ local plugins = {
     },
   },
   {
-    "jose-elias-alvarez/typescript.nvim",
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     event = "VeryLazy",
-    config = function()
+    opts = function()
       require("custom.configs.typescript")
     end,
-  },
-}
+}}
 return plugins
