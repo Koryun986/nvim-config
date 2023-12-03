@@ -235,5 +235,6 @@ local plugins = {
     opts = function()
       require("custom.configs.typescript")
     end,
-}}
+  },
+}
 return plugins
