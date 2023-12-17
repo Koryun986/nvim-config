@@ -114,7 +114,7 @@ local plugins = {
     event = "VeryLazy",
     config = function ()
       require "custom.configs.lint"
-    end, 
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -123,7 +123,9 @@ local plugins = {
         "eslint-lsp",
         "prettier",
         "typescript-language-server",
-      }, 
+        "css-lsp",
+        "html-lsp"
+      },
     },
   },
   {
