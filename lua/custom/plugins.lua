@@ -124,7 +124,8 @@ local plugins = {
         "prettier",
         "typescript-language-server",
         "css-lsp",
-        "html-lsp"
+        "html-lsp",
+        "graphql"
       },
     },
   },
